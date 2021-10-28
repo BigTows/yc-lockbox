@@ -1,0 +1,22 @@
+name: 'Yandex Lockbox - Secret vault'
+description: 'GitHub Action for working with Yandex Cloud Lockbox, secret vault manager'
+author: 'Alexander <BigTows> Chapchuk'
+inputs:
+  iam-token:
+    required: true
+    description: 'IAM Token for authorization into Payload lockbox, required `lockbox.payloadViewer` permission'
+  secret-id:
+    required: true
+    description: 'ID of the secret. The maximum string length in characters is 50.'
+  secret-key:
+    required: true
+    description: 'Which one of the secrets we are finding at Secret storage'
+  version-id:
+    required: false
+    description: 'Optional ID of the version. The maximum string length in characters is 50.'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: arrow-down-circle
+  color: blue

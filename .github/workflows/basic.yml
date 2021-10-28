@@ -32,6 +32,7 @@ jobs:
           iam-token: ${{ steps.generation-iam-token.outputs.iam-token }}
           secret-id:  ${{ secrets.LOCKBOX_SECRET_ID }}
           secret-key:  test/value
+      - name: Echo
         run: |
           echo $LOCKBOX_TEST/VALUE
 #  release:

@@ -79,6 +79,7 @@ export default class YandexLockboxRepository {
     if (result === undefined) {
       throw new Error(`Can't find secret with key: ${secretKey}`)
     }
+    core.setSecret(result.textValue !== undefined ? result.textValue : <string> result.binaryValue)
     return result
   }
 }

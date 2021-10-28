@@ -4,7 +4,6 @@ on: # rebuild any PRs and main branch changes
   push:
     branches:
       - main
-      - develop
       - 'releases/*'
 
 jobs:
@@ -44,14 +43,13 @@ jobs:
       - name: Echo file base64
         run: |
           echo "$LOCKBOX_TEST_FILE"
-
-#  release:
-#    needs: build
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: "marvinpinto/action-automatic-releases@latest"
-#        with:
-#          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-#          automatic_release_tag: "latest"
-#          title: "${{ github.event.head_commit.message }}"
-#          prerelease: false
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          title: "${{ github.event.head_commit.message }}"
+          prerelease: false

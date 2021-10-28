@@ -52,7 +52,7 @@ function run() {
             const lockboxRepository = new yandex_lockbox_repository_1.default(iamToken, secretId, versionId);
             yield lockboxRepository.load();
             const entry = lockboxRepository.findOne(secretKey);
-            core.exportVariable('LOCKBOX_' + secretKey.toUpperCase(), entry.textValue !== undefined ? entry.textValue : entry.binaryValue);
+            core.exportVariable('LOCKBOX_' + secretKey.toUpperCase().replace('/', '_'), entry.textValue !== undefined ? entry.textValue : entry.binaryValue);
         }
         catch (error) {
             if (error instanceof Error)

@@ -34,7 +34,7 @@ jobs:
           secret-key:  test/text
       - name: Echo text
         run: |
-          echo "$LOCKBOX_TEST_TEXT" && [ "$LOCKBOX_TEST_TEXT" != "Hello GitHub!" ] && badCommandaagg
+          echo "$LOCKBOX_TEST_TEXT" && [ "$LOCKBOX_TEST_TEXT" != "Hello GitHub" ] && badCommandaagg
       - name: Testing file
         uses: ./
         with:

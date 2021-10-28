@@ -120,7 +120,7 @@ class YandexLockboxRepository {
     static buildAxiosParams(iamToken, versionId) {
         const axiosConfiguration = {
             params: {},
-            timeout: 120,
+            timeout: 10 * 1000,
             headers: {
                 Authorization: `Bearer ${iamToken}`,
                 'Content-Type': 'application/json'

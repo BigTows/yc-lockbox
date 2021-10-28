@@ -31,10 +31,10 @@ jobs:
         with:
           iam-token: ${{ steps.generation-iam-token.outputs.iam-token }}
           secret-id:  ${{ secrets.LOCKBOX_SECRET_ID }}
-          secret-key:  test/value
+          secret-key:  test/text
       - name: Echo
         run: |
-          echo $LOCKBOX_TEST/VALUE
+          echo $LOCKBOX_TEST/TEXT
 #  release:
 #    needs: build
 #    runs-on: ubuntu-latest

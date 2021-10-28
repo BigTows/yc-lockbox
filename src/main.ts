@@ -18,7 +18,7 @@ async function run(): Promise<void> {
 
     const entry: Entry = lockboxRepository.findOne(secretKey)
     core.exportVariable(
-      'LOCKBOX_' + secretKey.toUpperCase().replace('/','_'),
+      'LOCKBOX_' + secretKey.toUpperCase().replace('/', '_'),
       entry.textValue !== undefined ? entry.textValue : entry.binaryValue
     )
   } catch (error) {

@@ -34,7 +34,7 @@ jobs:
           secret-key:  test/text
       - name: Echo text
         run: |
-          echo "$LOCKBOX_TEST_TEXT" && [ "$LOCKBOX_TEST_TEXT" != "HelloGitHub" ] && exit 2
+          echo "$LOCKBOX_TEST_TEXT"
       - name: Testing file
         uses: ./
         with:
@@ -43,7 +43,7 @@ jobs:
           secret-key: test/file
       - name: Echo file base64
         run: |
-          echo "$LOCKBOX_TEST_FILE" && [ "$LOCKBOX_TEST_FILE" != "SGVsbG8gR2l0SHViLnR4dAo=" ] && exit 2
+          echo "$LOCKBOX_TEST_FILE"
 
 #  release:
 #    needs: build

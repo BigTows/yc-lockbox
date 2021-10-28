@@ -1,0 +1,46 @@
+name: 'build-test'
+on: # rebuild any PRs and main branch changes
+  pull_request:
+  push:
+    branches:
+      - main
+      - develop
+      - 'releases/*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          npm install
+      - run: |
+          npm run all
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create IAM token
+        uses: bigtows/yc-token@latest
+        id: generation-iam-token
+        with:
+          service-account-token: ${{ secrets.SERVICE_ACCOUNT_TOKEN }}
+          type-token: iam
+      - name: Testing
+        uses: ./
+        with:
+          iam-token: ${{ steps.generation-iam-token.outputs.iam-token }}
+          secret-id:  ${{ secrets.LOCKBOX_SECRET_ID }}
+          secret-key:  test/value
+        run: |
+          echo $LOCKBOX_TEST/VALUE
+#  release:
+#    needs: build
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: "marvinpinto/action-automatic-releases@latest"
+#        with:
+#          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+#          automatic_release_tag: "latest"
+#          title: "${{ github.event.head_commit.message }}"
+#          prerelease: false
